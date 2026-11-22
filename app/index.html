@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SplitSettle — split payments in tUSD8 on Aevum</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; background: #0b1020; color: #e8ecf8; }
+  main { max-width: 720px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 26px; margin-bottom: 4px; }
+  .sub { color: #9aa7c7; margin-top: 0; }
+  .card { background: #141b31; border: 1px solid #263157; border-radius: 12px; padding: 16px; margin: 16px 0; }
+  label { display: block; font-size: 13px; color: #9aa7c7; margin: 10px 0 4px; }
+  input { width: 100%; box-sizing: border-box; padding: 9px; border-radius: 8px; border: 1px solid #33406b; background: #0b1020; color: #e8ecf8; }
+  button { background: #3b6cff; color: white; border: 0; border-radius: 8px; padding: 10px 16px; cursor: pointer; font-weight: 600; margin-top: 12px; }
+  button:disabled { opacity: .5; cursor: default; }
+  .row { display: flex; gap: 8px; } .row > div { flex: 1; }
+  #status { white-space: pre-wrap; font-size: 14px; }
+  .payee { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed #263157; font-size: 14px; }
+  a { color: #7ea2ff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>SplitSettle</h1>
+  <p class="sub">One payment in <b>tUSD8</b> on QDay Aevum testnet — split automatically between everyone who earned it.</p>
+
+  <div class="card">
+    <button id="connect">Connect wallet</button>
+    <span id="account"></span>
+    <p class="sub" style="font-size:13px">Contract: <span id="contractAddr">set after deployment (deployments.json)</span></p>
+  </div>
+
+  <div class="card">
+    <h3>1 · Merchant: create a payment request</h3>
+    <label>Amount (tUSD8)</label><input id="amount" value="25">
+    <label>Memo / invoice reference</label><input id="memo" value="INV-2026-001">
+    <label>Recipients — one per line: address, share %, label</label>
+    <input id="recipients" value="">
+    <button id="create">Create request</button>
+  </div>
+
+  <div class="card">
+    <h3>2 · Anyone: inspect &amp; pay a request</h3>
+    <label>Request ID</label><input id="requestId" value="1">
+    <button id="load">Show payees</button>
+    <div id="payees"></div>
+    <button id="pay">Pay with one signature (permit)</button>
+    <button id="settle">Settle (creator)</button>
+    <button id="refund">Refund</button>
+  </div>
+
+  <div class="card"><h3>Status</h3><div id="status">Connect a wallet to begin.</div></div>
+  <p class="sub" style="font-size:12px">Testnet only — tUSD8 has no real value. Aevum chain ID 44005.</p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

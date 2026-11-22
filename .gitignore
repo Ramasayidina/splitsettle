@@ -1,0 +1,4 @@
+.testnet-wallet.json
+.env
+node_modules/
+out/

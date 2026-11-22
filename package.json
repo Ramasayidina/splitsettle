@@ -1,0 +1,23 @@
+{
+  "name": "aevum",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/run-tests.js",
+    "compile": "node scripts/compile.js",
+    "deploy": "node scripts/deploy.js",
+    "demo": "node scripts/demo-flow.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.17.0",
+    "ganache": "^7.9.2",
+    "solc": "^0.8.26"
+  }
+}
